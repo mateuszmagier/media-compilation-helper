@@ -1,3 +1,5 @@
-<ul *ngFor="let audioFile of audioFilesList">
-  <li>{{audioFile.timestamp | convertTimestamp }} {{audioFile.filename}}: {{audioFile.duration}} </li>
+<ul>
+  <li *ngFor="let audioFile of audioFilesList">
+    {{audioFile.timestamp}} <span contenteditable>{{audioFile.filename}}</span>: {{audioFile.duration | convertTimestamp:false}}
+  </li>
 </ul>

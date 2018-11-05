@@ -7,6 +7,7 @@ import { FilesUploadComponent } from './files-upload/files-upload.component';
 import { FilesService } from './services/files.service';
 import { FilesListComponent } from './files-list/files-list.component';
 import { ConvertTimestampPipe } from './pipes/convert-timestamp.pipe';
+import { TimestampService } from './services/timestamp.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { ConvertTimestampPipe } from './pipes/convert-timestamp.pipe';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [FilesService],
+  providers: [TimestampService, FilesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
