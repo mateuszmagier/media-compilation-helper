@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FilesService } from '../services/files.service';
+import { DatabaseService } from '../services/database.service';
 
 @Component({
   selector: 'app-save',
@@ -11,7 +12,7 @@ export class SaveComponent implements OnInit {
   compilation: AudioCompilation;
   audiofiles: Array<AudioFile>;
 
-  constructor(public filesService: FilesService) { }
+  constructor(public filesService: FilesService, private databaseService: DatabaseService) { }
 
   ngOnInit() {
     this.filesService.getObservable().subscribe(list => {
@@ -25,7 +26,9 @@ export class SaveComponent implements OnInit {
       name: compilationName,
       audiofiles: this.audiofiles
     };
+    this.databaseService.saveCompilation(this.compilation);
     console.log(this.compilation);
+    console.log(JSON.stringify(this.compilation, null, 2));
   }
 
 }

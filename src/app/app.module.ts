@@ -9,6 +9,9 @@ import { FilesListComponent } from './files-list/files-list.component';
 import { ConvertTimestampPipe } from './pipes/convert-timestamp.pipe';
 import { TimestampService } from './services/timestamp.service';
 import { SaveComponent } from './save/save.component';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { DatabaseService } from './services/database.service';
 
 @NgModule({
   declarations: [
@@ -20,9 +23,11 @@ import { SaveComponent } from './save/save.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CommonModule,
+    HttpClientModule
   ],
-  providers: [TimestampService, FilesService],
+  providers: [TimestampService, FilesService, DatabaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
