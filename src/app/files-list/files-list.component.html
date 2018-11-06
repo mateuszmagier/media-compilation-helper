@@ -1,5 +1,24 @@
-<ul>
+<!-- <ul>
   <li *ngFor="let audioFile of audioFilesList">
-    {{audioFile.timestamp}} <span contenteditable>{{audioFile.filename}}</span>: {{audioFile.duration | convertTimestamp:false}}
+    {{audioFile.timestamp}} <span contenteditable>{{audioFile.filename}}</span>: {{audioFile.duration |
+    convertTimestamp:false}}
   </li>
-</ul>
+</ul> -->
+<table *ngIf="audioFilesList.length" class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Timestamp</th>
+      <th scope="col">Filename</th>
+      <th scope="col">Duration</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let audioFile of audioFilesList; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{audioFile.timestamp}}</td>
+        <td>{{audioFile.filename}}</td>
+        <td>{{audioFile.duration | convertTimestamp:false}}</td>
+    </tr>
+  </tbody>
+</table>

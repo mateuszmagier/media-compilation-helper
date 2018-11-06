@@ -21,7 +21,7 @@ export class FilesService {
       promises.push(this.obtainDuration(audioFile, file));
       this.list.push(audioFile);
     });
-    this.audioFilesList$.next(this.list);
+    // this.audioFilesList$.next(this.list);
 
     // calculate timestamps after obtaining all durations
     Promise.all(promises).then(resp => {
