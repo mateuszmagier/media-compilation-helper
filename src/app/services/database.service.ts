@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpParams, HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,10 @@ export class DatabaseService {
       // .append('q', JSON.stringify(query));
 
     return param;
+  }
+
+  getCompilations(): Observable<Array<AudioCompilation>> {
+    return this.http.get<Array<AudioCompilation>>(this.URL_DB, { params: this.getParams() });
   }
 
   saveCompilation(compilation: AudioCompilation) {

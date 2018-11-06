@@ -1,0 +1,5 @@
+<div [ngClass]="{'inline-container': saveRef.audiofiles && saveRef.audiofiles.length}">
+    <app-files-upload></app-files-upload>
+    <app-save #saveRef></app-save>
+</div>
+<app-files-list></app-files-list>

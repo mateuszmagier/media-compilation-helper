@@ -12,6 +12,8 @@ import { SaveComponent } from './save/save.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { DatabaseService } from './services/database.service';
+import { NewCompilationComponent } from './new-compilation/new-compilation.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { DatabaseService } from './services/database.service';
     FilesUploadComponent,
     FilesListComponent,
     ConvertTimestampPipe,
-    SaveComponent
+    SaveComponent,
+    NewCompilationComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,

@@ -12,7 +12,12 @@ export class SaveComponent implements OnInit {
   compilation: AudioCompilation;
   audiofiles: Array<AudioFile>;
 
-  constructor(public filesService: FilesService, private databaseService: DatabaseService) { }
+  constructor(public filesService: FilesService, private databaseService: DatabaseService) {
+    databaseService.getCompilations().subscribe(list => {
+      console.log('Compilations list:');
+      console.log(list);
+    });
+  }
 
   ngOnInit() {
     this.filesService.getObservable().subscribe(list => {
