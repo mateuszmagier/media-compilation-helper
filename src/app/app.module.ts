@@ -8,13 +8,15 @@ import { FilesService } from './services/files.service';
 import { FilesListComponent } from './files-list/files-list.component';
 import { ConvertTimestampPipe } from './pipes/convert-timestamp.pipe';
 import { TimestampService } from './services/timestamp.service';
+import { SaveComponent } from './save/save.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FilesUploadComponent,
     FilesListComponent,
-    ConvertTimestampPipe
+    ConvertTimestampPipe,
+    SaveComponent
   ],
   imports: [
     BrowserModule,

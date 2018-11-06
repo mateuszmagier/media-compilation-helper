@@ -1,0 +1,5 @@
+<div *ngIf="filesService.list.length">
+  <!-- <label for="compilationName">Nazwa kompilacji</label> -->
+  <input #compilationName type="text" required>
+  <button type="button" (click)="saveCompilation(compilationName)">Save compilation</button>
+</div>

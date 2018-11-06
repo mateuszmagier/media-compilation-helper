@@ -9,41 +9,34 @@ export class FilesService {
 
   audioFilesList$ = new BehaviorSubject<Array<AudioFile>>([]);
   list: Array<AudioFile> = [];
+  lastTimestamp = 0;
 
   constructor(private timestampService: TimestampService) { }
 
   addFiles(files: FileList) {
     let audioFile: AudioFile;
-    const promises = [];
 
     [].forEach.call(files, file => {
       audioFile = this.buildModel(file);
-      promises.push(this.obtainDuration(audioFile, file));
-      this.list.push(audioFile);
+      this.obtainDuration(audioFile, file).then(resolve => {
+        audioFile = this.calculateTimestamp(resolve);
+        this.list.push(audioFile);
+      });
     });
-    // this.audioFilesList$.next(this.list);
 
-    // calculate timestamps after obtaining all durations
-    Promise.all(promises).then(resp => {
-      if (resp.every(res => res)) { // if all responses are true
-        this.calculateTimestamps();
-      }
-    });
-  }
-
-  calculateTimestamps() {
-    let timestamp = 0;
-    [].forEach.call(this.list, audioFile => {
-      audioFile.rawTimestamp = timestamp;
-      audioFile.timestamp = this.timestampService.getTimestamp(timestamp);
-      console.log('Ustawianie timestamp z duration: ' + audioFile.duration);
-      timestamp += audioFile.duration;
-    });
     this.audioFilesList$.next(this.list);
   }
 
-  obtainDuration(audioFile: AudioFile, file: File) {
-    const promise = new Promise((resolve, reject) => {
+  calculateTimestamp(audioFile: AudioFile) {
+    audioFile.rawTimestamp = this.lastTimestamp;
+    audioFile.timestamp = this.timestampService.getTimestamp(this.lastTimestamp);
+    this.lastTimestamp += audioFile.duration;
+    console.log('Ustawianie timestamp z duration: ' + audioFile.duration);
+    return audioFile;
+  }
+
+  obtainDuration(audioFile: AudioFile, file: File): Promise<AudioFile> {
+    return new Promise((resolve, reject) => {
       const url = URL.createObjectURL(file);
       const audio = new Audio();
       audio.setAttribute('src', url);
@@ -51,14 +44,13 @@ export class FilesService {
         if (e.target['duration']) {
           audioFile.duration = e.target['duration'];
           console.log('Wyznaczylem duration: ' + audioFile.duration);
-          resolve(true);
+          resolve(audioFile);
         } else {
           console.error('Błąd w pobieraniu czasu trwania.');
-          reject(false);
+          reject();
         }
       });
     });
-    return promise;
   }
 
   buildModel(file: File): AudioFile {
