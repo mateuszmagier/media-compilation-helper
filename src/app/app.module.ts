@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { DatabaseService } from './services/database.service';
 import { NewCompilationComponent } from './new-compilation/new-compilation.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { CompilationsListComponent } from './compilations-list/compilations-list.component';
+import { CompilationService } from './services/compilation.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { NavigationComponent } from './navigation/navigation.component';
     ConvertTimestampPipe,
     SaveComponent,
     NewCompilationComponent,
-    NavigationComponent
+    NavigationComponent,
+    CompilationsListComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,7 @@ import { NavigationComponent } from './navigation/navigation.component';
     CommonModule,
     HttpClientModule
   ],
-  providers: [TimestampService, FilesService, DatabaseService],
+  providers: [TimestampService, FilesService, DatabaseService, CompilationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

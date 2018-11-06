@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FilesService } from '../services/files.service';
-import { DatabaseService } from '../services/database.service';
+import { CompilationService } from '../services/compilation.service';
 
 @Component({
   selector: 'app-save',
@@ -12,11 +12,8 @@ export class SaveComponent implements OnInit {
   compilation: AudioCompilation;
   audiofiles: Array<AudioFile>;
 
-  constructor(public filesService: FilesService, private databaseService: DatabaseService) {
-    databaseService.getCompilations().subscribe(list => {
-      console.log('Compilations list:');
-      console.log(list);
-    });
+  constructor(public filesService: FilesService, private compilationService: CompilationService) {
+
   }
 
   ngOnInit() {
@@ -31,7 +28,8 @@ export class SaveComponent implements OnInit {
       name: compilationName,
       audiofiles: this.audiofiles
     };
-    this.databaseService.saveCompilation(this.compilation);
+    this.compilationService.saveCompilation(this.compilation);
+    this.filesService.clearFilesList();
     console.log(this.compilation);
     console.log(JSON.stringify(this.compilation, null, 2));
   }

@@ -8,23 +8,23 @@ import { TimestampService } from './timestamp.service';
 export class FilesService {
 
   audioFilesList$ = new BehaviorSubject<Array<AudioFile>>([]);
-  list: Array<AudioFile> = [];
   lastTimestamp = 0;
 
   constructor(private timestampService: TimestampService) { }
 
   addFiles(files: FileList) {
     let audioFile: AudioFile;
+    const list = this.audioFilesList$.getValue();
 
     [].forEach.call(files, file => {
       audioFile = this.buildModel(file);
       this.obtainDuration(audioFile, file).then(resolve => {
         audioFile = this.calculateTimestamp(resolve);
-        this.list.push(audioFile);
+        list.push(audioFile);
       });
     });
 
-    this.audioFilesList$.next(this.list);
+    this.audioFilesList$.next(list);
   }
 
   calculateTimestamp(audioFile: AudioFile) {
@@ -62,5 +62,9 @@ export class FilesService {
 
   getObservable(): Observable<Array<AudioFile>> {
     return this.audioFilesList$.asObservable();
+  }
+
+  clearFilesList() {
+    this.audioFilesList$.next([]);
   }
 }
