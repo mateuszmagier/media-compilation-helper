@@ -1,5 +1,8 @@
-<div [ngClass]="{'inline-container': saveRef.audiofiles && saveRef.audiofiles.length}">
+<div class="new-compilation-container" [ngClass]="{'inline-container': saveRef.audioFiles && saveRef.audioFiles.length}">
     <app-files-upload></app-files-upload>
-    <app-save #saveRef></app-save>
+    <app-save [compilation]="compilation" #saveRef></app-save>
 </div>
-<app-files-list></app-files-list>
+<div class="new-compilation-container">
+    <app-compilation [compilation]="compilation"></app-compilation>
+</div>
+

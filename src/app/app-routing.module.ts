@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NewCompilationComponent } from './new-compilation/new-compilation.component';
-import { CompilationsListComponent } from './compilations-list/compilations-list.component';
+import { CompilationsPanelComponent } from './compilations-panel/compilations-panel.component';
 
 const routes: Routes = [
   {
@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'compilations',
-    component: CompilationsListComponent
+    component: CompilationsPanelComponent
   }
 ];
 

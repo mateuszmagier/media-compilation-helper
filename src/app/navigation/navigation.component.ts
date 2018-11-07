@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CompilationService } from '../services/compilation.service';
 
 @Component({
   selector: 'app-navigation',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+  constructor(public compilationService: CompilationService) { }
 
   ngOnInit() {
   }

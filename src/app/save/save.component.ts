@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FilesService } from '../services/files.service';
 import { CompilationService } from '../services/compilation.service';
 
@@ -9,8 +9,10 @@ import { CompilationService } from '../services/compilation.service';
 })
 export class SaveComponent implements OnInit {
 
+  @Input()
   compilation: AudioCompilation;
-  audiofiles: Array<AudioFile>;
+
+  audioFiles: Array<AudioFile>;
 
   constructor(public filesService: FilesService, private compilationService: CompilationService) {
 
@@ -18,16 +20,15 @@ export class SaveComponent implements OnInit {
 
   ngOnInit() {
     this.filesService.getObservable().subscribe(list => {
-      this.audiofiles = list;
+      this.audioFiles = list;
     });
   }
 
   saveCompilation(input: HTMLInputElement) {
     const compilationName = input.value;
-    this.compilation = {
-      name: compilationName,
-      audiofiles: this.audiofiles
-    };
+    this.compilation.name = compilationName;
+    this.compilation.created = new Date();
+
     this.compilationService.saveCompilation(this.compilation);
     this.filesService.clearFilesList();
     console.log(this.compilation);

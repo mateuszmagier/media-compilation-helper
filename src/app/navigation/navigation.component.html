@@ -1,7 +1,15 @@
 <!-- add class nav-stacked for vertical pills -->
 <ul class="nav nav-pills nav-justified">
-  <li routerLinkActive="active"><a routerLink="new">New compilation</a></li>
-  <li routerLinkActive="active"><a routerLink="compilations">My compilations</a></li>
-  <li><a href="#">Settings</a></li>
-  <li><a href="#">Logout</a></li>
+  <li routerLinkActive="active">
+    <a routerLink="new">New compilation</a>
+  </li>
+  <li routerLinkActive="active">
+    <a routerLink="compilations">My compilations <span class="badge">{{compilationService.compilationListSubject.getValue().length}}</span></a>
+  </li>
+  <li>
+    <a href="#">Settings</a>
+  </li>
+  <li>
+    <a href="#">Logout</a>
+  </li>
 </ul>

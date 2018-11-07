@@ -1,3 +1,6 @@
-<ul *ngIf="compilationsList">
-  <li *ngFor="let compilation of compilationsList">{{compilation.name}}</li>
-</ul>
+<div *ngIf="compilations" class="list-group">
+  <a *ngFor="let compilation of compilations" href="#" class="list-group-item">
+    <span class="badge">{{compilation.audiofiles.length}}</span>
+    {{compilation.name}}
+  </a>
+</div>

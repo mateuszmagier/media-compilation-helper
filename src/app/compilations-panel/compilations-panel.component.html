@@ -1,0 +1,8 @@
+<div class="compilations-panel">
+  <div class="compilations-panel-left">
+    <app-compilations-list [compilations]="compilations"></app-compilations-list>
+  </div>
+  <div class="compilations-panel-right">
+    <app-compilation *ngIf="activeCompilation" [compilation]="activeCompilation"></app-compilation>
+  </div>
+</div>

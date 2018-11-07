@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CompilationService } from '../services/compilation.service';
 
 @Component({
@@ -8,13 +8,10 @@ import { CompilationService } from '../services/compilation.service';
 })
 export class CompilationsListComponent implements OnInit {
 
-  compilationsList: Array<AudioCompilation>;
+  @Input()
+  compilations: Array<AudioCompilation>;
 
-  constructor(private compilationService: CompilationService) {
-    this.compilationService.getCompilationListObservable().subscribe(list => {
-      this.compilationsList = list;
-    });
-  }
+  constructor() {  }
 
   ngOnInit() {
   }

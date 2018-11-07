@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FilesUploadComponent } from './files-upload/files-upload.component';
 import { FilesService } from './services/files.service';
-import { FilesListComponent } from './files-list/files-list.component';
 import { ConvertTimestampPipe } from './pipes/convert-timestamp.pipe';
 import { TimestampService } from './services/timestamp.service';
 import { SaveComponent } from './save/save.component';
@@ -16,17 +15,20 @@ import { NewCompilationComponent } from './new-compilation/new-compilation.compo
 import { NavigationComponent } from './navigation/navigation.component';
 import { CompilationsListComponent } from './compilations-list/compilations-list.component';
 import { CompilationService } from './services/compilation.service';
+import { CompilationComponent } from './compilation/compilation.component';
+import { CompilationsPanelComponent } from './compilations-panel/compilations-panel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FilesUploadComponent,
-    FilesListComponent,
+    CompilationComponent,
     ConvertTimestampPipe,
     SaveComponent,
     NewCompilationComponent,
     NavigationComponent,
-    CompilationsListComponent
+    CompilationsListComponent,
+    CompilationsPanelComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 interface AudioCompilation {
   _id?: { $oid: string }; // struktura narzucona przez MongoDB
-  name: string;
-  audiofiles?: Array<AudioFile>;
+  name?: string;
+  created?: Date;
+  audiofiles: Array<AudioFile>;
 }
