@@ -1,5 +1,5 @@
 <div *ngIf="compilations" class="list-group">
-  <a *ngFor="let compilation of compilations" href="#" class="list-group-item">
+  <a *ngFor="let compilation of compilations; let i = index" [routerLink]="i+1" routerLinkActive="active" class="list-group-item">
     <span class="badge">{{compilation.audiofiles.length}}</span>
     {{compilation.name}}
   </a>

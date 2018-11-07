@@ -9,16 +9,13 @@ import { CompilationService } from '../services/compilation.service';
 export class CompilationsPanelComponent implements OnInit {
 
   compilations: Array<AudioCompilation>;
-  activeCompilation: AudioCompilation;
 
   constructor(private compilationService: CompilationService) {
     this.compilationService.getCompilationListObservable().subscribe(list => {
       this.compilations = list;
-      this.activeCompilation = list[3];
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

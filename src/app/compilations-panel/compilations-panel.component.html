@@ -3,6 +3,7 @@
     <app-compilations-list [compilations]="compilations"></app-compilations-list>
   </div>
   <div class="compilations-panel-right">
-    <app-compilation *ngIf="activeCompilation" [compilation]="activeCompilation"></app-compilation>
+    <router-outlet></router-outlet>
+    <!-- <app-compilation *ngIf="activeCompilation" [compilation]="activeCompilation"></app-compilation> -->
   </div>
 </div>
