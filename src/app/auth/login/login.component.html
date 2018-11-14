@@ -1,0 +1,17 @@
+<form class="auth-form" (ngSubmit)="login(formData)" #formData='ngForm'>
+  <div class="form-group row">
+    <label for="login-email" class="col-sm-4 col-form-label">Email address:</label>
+    <div class="col-sm-8">
+      <input ngModel type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="login-password" class="col-sm-4 col-form-label">Password:</label>
+    <div class="col-sm-8">
+      <input ngModel type="password" class="form-control" name="password" id="password" placeholder="Password">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-success">Login</button>
+  <button type="button" (click)="register(formData)" class="btn btn-primary">Register</button>
+  <button type="button" (click)="loginAsTest()" class="btn btn-default">Login as test user</button>
+</form>

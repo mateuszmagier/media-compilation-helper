@@ -3,8 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { NewCompilationComponent } from './new-compilation/new-compilation.component';
 import { CompilationsPanelComponent } from './compilations-panel/compilations-panel.component';
 import { CompilationComponent } from './compilation/compilation.component';
+import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [
+  {
+    path: 'login',
+    component: LoginComponent
+  },
   {
     path: 'new',
     component: NewCompilationComponent

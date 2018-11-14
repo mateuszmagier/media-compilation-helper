@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +11,14 @@ export class DatabaseService {
   readonly URL_DB = 'https://api.mlab.com/api/1/databases/mch_db/collections/compilations';
   readonly API_KEY = 'h4juEelJmp-oKf-vn_fnP2Qu1FmwyRhW';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   getParams(): HttpParams {
-    // const query = {
-    //   'userId': this.authService.user.uid
-    // };
-    const param = new HttpParams().set('apiKey', this.API_KEY);
-      // .append('q', JSON.stringify(query));
+    const query = {
+      'userId': this.authService.user.uid
+    };
+    const param = new HttpParams().set('apiKey', this.API_KEY)
+      .append('q', JSON.stringify(query));
 
     return param;
   }

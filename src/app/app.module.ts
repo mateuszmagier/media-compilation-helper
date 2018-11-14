@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,19 @@ import { CompilationsListComponent } from './compilations-list/compilations-list
 import { CompilationService } from './services/compilation.service';
 import { CompilationComponent } from './compilation/compilation.component';
 import { CompilationsPanelComponent } from './compilations-panel/compilations-panel.component';
+import { LoginComponent } from './auth/login/login.component';
+import { AuthService } from './auth/auth.service';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyChfM6HCZtYKIJqGrrgjqqhd8lxV3TpLIo',
+  authDomain: 'media-compilation-helper.firebaseapp.com',
+  databaseURL: 'https://media-compilation-helper.firebaseio.com',
+  projectId: 'media-compilation-helper',
+  storageBucket: 'media-compilation-helper.appspot.com',
+  messagingSenderId: '1064737961811'
+};
 
 @NgModule({
   declarations: [
@@ -28,15 +42,20 @@ import { CompilationsPanelComponent } from './compilations-panel/compilations-pa
     NewCompilationComponent,
     NavigationComponent,
     CompilationsListComponent,
-    CompilationsPanelComponent
+    CompilationsPanelComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule
   ],
-  providers: [TimestampService, FilesService, DatabaseService, CompilationService],
+  providers: [TimestampService, FilesService, DatabaseService, CompilationService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

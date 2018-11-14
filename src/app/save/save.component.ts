@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FilesService } from '../services/files.service';
 import { CompilationService } from '../services/compilation.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-save',
@@ -14,7 +15,9 @@ export class SaveComponent implements OnInit {
 
   audioFiles: Array<AudioFile>;
 
-  constructor(public filesService: FilesService, private compilationService: CompilationService) {
+  constructor(public filesService: FilesService,
+    private compilationService: CompilationService,
+    private authService: AuthService) {
 
   }
 
@@ -27,6 +30,7 @@ export class SaveComponent implements OnInit {
   saveCompilation(input: HTMLInputElement) {
     const compilationName = input.value;
     this.compilation.name = compilationName;
+    this.compilation.userId = this.authService.user.uid;
     this.compilation.created = new Date();
 
     this.compilationService.saveCompilation(this.compilation);
