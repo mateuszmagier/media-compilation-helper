@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef, AfterViewInit } from '@angular/core';
-import { SaveComponent } from '../save/save.component';
 import { FilesService } from '../services/files.service';
 
 @Component({
@@ -7,10 +6,7 @@ import { FilesService } from '../services/files.service';
   templateUrl: './new-compilation.component.html',
   styleUrls: ['./new-compilation.component.scss']
 })
-export class NewCompilationComponent implements OnInit {
-
-  // @ViewChild('saveRef')
-  // saveComponent: SaveComponent;
+export class NewCompilationComponent {
 
   compilation: AudioCompilation;
 
@@ -21,19 +17,5 @@ export class NewCompilationComponent implements OnInit {
       };
     });
   }
-  // constructor(private cdr: ChangeDetectorRef, private filesService: FilesService) {
-  //   this.filesService.getObservable().subscribe(list => {
-  //     this.compilation = {
-  //       audiofiles: list
-  //     };
-  //   });
-  // }
-
-  ngOnInit() {
-  }
-
-  // ngAfterViewInit() {
-  //   this.cdr.detectChanges(); // prevents ExpressionChangedAfterItHasBeenCheckedError
-  // }
 
 }

@@ -1,6 +1,6 @@
 <div *ngIf="compilations" class="list-group">
-  <a *ngFor="let compilation of compilations; let i = index" [routerLink]="i+1" routerLinkActive="active" class="list-group-item">
-    <span class="badge">{{compilation.audiofiles.length}}</span>
-    {{compilation.name}}
+  <a *ngFor="let compilation of compilations; let i = index" [routerLink]="i+1" routerLinkActive="active" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+      {{compilation.name}}
+      <span class="badge badge-primary badge-pill">{{compilation.audiofiles.length}}</span>
   </a>
 </div>
