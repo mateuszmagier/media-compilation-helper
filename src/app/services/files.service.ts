@@ -64,7 +64,8 @@ export class FilesService {
     return this.audioFilesList$.asObservable();
   }
 
-  clearFilesList() {
+  reset() {
     this.audioFilesList$.next([]);
+    this.lastTimestamp = 0;
   }
 }

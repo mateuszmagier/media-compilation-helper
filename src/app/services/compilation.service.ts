@@ -36,4 +36,8 @@ export class CompilationService {
     list.push(compilation);
     this.compilationListSubject.next(list);
   }
+
+  getAudiofilesNumber() {
+    return this.compilationListSubject.getValue().length;
+  }
 }

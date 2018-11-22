@@ -4,7 +4,7 @@
     <a routerLink="new">New compilation</a>
   </li>
   <li routerLinkActive="active">
-    <a routerLink="compilations">My compilations <span class="badge">{{compilationService.compilationListSubject.getValue().length}}</span></a>
+    <a routerLink="compilations">My compilations <span class="badge">{{compilationService.getAudiofilesNumber()}}</span></a>
   </li>
   <li>
     <a href="#">Settings</a>

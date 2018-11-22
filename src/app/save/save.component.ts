@@ -34,7 +34,7 @@ export class SaveComponent implements OnInit {
     this.compilation.created = new Date();
 
     this.compilationService.saveCompilation(this.compilation);
-    this.filesService.clearFilesList();
+    this.filesService.reset();
     console.log(this.compilation);
     console.log(JSON.stringify(this.compilation, null, 2));
   }
