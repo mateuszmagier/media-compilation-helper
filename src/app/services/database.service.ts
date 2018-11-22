@@ -27,7 +27,15 @@ export class DatabaseService {
     return this.http.get<Array<AudioCompilation>>(this.URL_DB, { params: this.getParams() });
   }
 
-  saveCompilation(compilation: AudioCompilation) {
-    this.http.post(this.URL_DB, compilation, { params: this.getParams() }).subscribe(result => console.log(result));
+  saveCompilation(compilation: AudioCompilation): Observable<AudioCompilation> {
+    // this.http.post(this.URL_DB, compilation, { params: this.getParams() }).subscribe(result => {
+    //   return result['_id'].$oid;
+    // });
+    return this.http.post<AudioCompilation>(this.URL_DB, compilation, { params: this.getParams() });
+  }
+
+  deleteCompilation(compilation: AudioCompilation) {
+    const deleteURL = this.URL_DB + '/' + compilation._id.$oid;
+    this.http.delete(deleteURL, { params: this.getParams() }).subscribe(result => console.log(result));
   }
 }

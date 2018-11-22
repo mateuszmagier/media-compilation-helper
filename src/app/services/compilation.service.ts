@@ -31,9 +31,19 @@ export class CompilationService {
   }
 
   saveCompilation(compilation: AudioCompilation) {
-    this.databaseService.saveCompilation(compilation);
+    this.databaseService.saveCompilation(compilation).subscribe(result => {
+      compilation._id = result._id;
+      const list = this.compilationListSubject.getValue();
+      list.push(compilation);
+      this.compilationListSubject.next(list);
+    });
+  }
+
+  deleteCompilation(compilation: AudioCompilation) {
+    this.databaseService.deleteCompilation(compilation);
     const list = this.compilationListSubject.getValue();
-    list.push(compilation);
+    const compilationIndex = list.indexOf(compilation);
+    list.splice(compilationIndex, 1);
     this.compilationListSubject.next(list);
   }
 

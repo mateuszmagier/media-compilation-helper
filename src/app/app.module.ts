@@ -22,6 +22,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { AuthService } from './auth/auth.service';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyChfM6HCZtYKIJqGrrgjqqhd8lxV3TpLIo',
@@ -53,7 +54,8 @@ const firebaseConfig = {
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ModalModule.forRoot()
   ],
   providers: [TimestampService, FilesService, DatabaseService, CompilationService, AuthService],
   bootstrap: [AppComponent]

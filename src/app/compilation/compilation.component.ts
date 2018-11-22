@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CompilationService } from '../services/compilation.service';
 
 @Component({
@@ -12,7 +12,11 @@ export class CompilationComponent implements OnInit {
   @Input()
   compilation: AudioCompilation;
 
-  constructor(private compilationService: CompilationService, private route: ActivatedRoute) { }
+  newCompilationMode: boolean;
+
+  constructor(private compilationService: CompilationService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe((param: Params) => {
@@ -21,8 +25,16 @@ export class CompilationComponent implements OnInit {
         this.compilationService.getCompilationListObservable().subscribe(list => {
           this.compilation = list[id - 1];
         });
+        this.newCompilationMode = false;
+      } else {
+        this.newCompilationMode = true;
       }
     });
+  }
+
+  delete() {
+    this.compilationService.deleteCompilation(this.compilation);
+    this.router.navigate(['/compilations']);
   }
 
 }
