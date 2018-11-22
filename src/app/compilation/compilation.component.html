@@ -1,5 +1,11 @@
 <ng-container *ngIf="compilation">
   <h3 class="compilation-name" *ngIf="compilation.name">{{compilation.name}}</h3>
+  <div *ngIf="newCompilationMode && filesService.audioFilesList$.getValue().length" class="input-group">
+    <input #compilationName type="text" class="form-control" placeholder="My compilation" required>
+    <span class="input-group-btn">
+      <button (click)="save(compilationName)" class="btn btn-success" type="button">Save</button>
+    </span>
+  </div>
   <button *ngIf="!newCompilationMode" type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
   <table *ngIf="compilation.audiofiles && compilation.audiofiles.length" class="table">
     <thead>

@@ -8,7 +8,6 @@ import { FilesUploadComponent } from './files-upload/files-upload.component';
 import { FilesService } from './services/files.service';
 import { ConvertTimestampPipe } from './pipes/convert-timestamp.pipe';
 import { TimestampService } from './services/timestamp.service';
-import { SaveComponent } from './save/save.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { DatabaseService } from './services/database.service';
@@ -39,7 +38,6 @@ const firebaseConfig = {
     FilesUploadComponent,
     CompilationComponent,
     ConvertTimestampPipe,
-    SaveComponent,
     NewCompilationComponent,
     NavigationComponent,
     CompilationsListComponent,

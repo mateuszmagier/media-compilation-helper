@@ -7,26 +7,33 @@ import { FilesService } from '../services/files.service';
   templateUrl: './new-compilation.component.html',
   styleUrls: ['./new-compilation.component.scss']
 })
-export class NewCompilationComponent implements OnInit, AfterViewInit {
+export class NewCompilationComponent implements OnInit {
 
-  @ViewChild('saveRef')
-  saveComponent: SaveComponent;
+  // @ViewChild('saveRef')
+  // saveComponent: SaveComponent;
 
   compilation: AudioCompilation;
 
-  constructor(private cdr: ChangeDetectorRef, private filesService: FilesService) {
+  constructor(private filesService: FilesService) {
     this.filesService.getObservable().subscribe(list => {
       this.compilation = {
         audiofiles: list
       };
     });
   }
+  // constructor(private cdr: ChangeDetectorRef, private filesService: FilesService) {
+  //   this.filesService.getObservable().subscribe(list => {
+  //     this.compilation = {
+  //       audiofiles: list
+  //     };
+  //   });
+  // }
 
   ngOnInit() {
   }
 
-  ngAfterViewInit() {
-    this.cdr.detectChanges(); // prevents ExpressionChangedAfterItHasBeenCheckedError
-  }
+  // ngAfterViewInit() {
+  //   this.cdr.detectChanges(); // prevents ExpressionChangedAfterItHasBeenCheckedError
+  // }
 
 }
