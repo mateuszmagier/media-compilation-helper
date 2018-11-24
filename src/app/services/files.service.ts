@@ -9,6 +9,7 @@ export class FilesService {
 
   audioFilesList$ = new BehaviorSubject<Array<AudioFile>>([]);
   lastTimestamp = 0;
+  uploaded = false;
 
   constructor(private timestampService: TimestampService) { }
 
@@ -25,6 +26,7 @@ export class FilesService {
     });
 
     this.audioFilesList$.next(list);
+    this.uploaded = true;
   }
 
   calculateTimestamp(audioFile: AudioFile) {

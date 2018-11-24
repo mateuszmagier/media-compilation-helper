@@ -1,5 +1,5 @@
 <label class="btn btn-primary btn-lg" for="filesInput">
   <i class="fas fa-plus"></i>
-  Add files
+  Add <span *ngIf="filesService.uploaded">more </span>files
 </label>
 <input type="file" (change)="onFileChange($event)" accept=".mp3" id="filesInput" multiple>

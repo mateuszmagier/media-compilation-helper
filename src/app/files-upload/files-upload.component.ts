@@ -8,7 +8,7 @@ import { FilesService } from '../services/files.service';
 })
 export class FilesUploadComponent implements OnInit {
 
-  constructor(private filesService: FilesService) { }
+  constructor(public filesService: FilesService) { }
 
   ngOnInit() {
   }
