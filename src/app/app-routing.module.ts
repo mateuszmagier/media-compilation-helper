@@ -5,6 +5,8 @@ import { CompilationsPanelComponent } from './compilations-panel/compilations-pa
 import { CompilationComponent } from './compilation/compilation.component';
 import { LoginComponent } from './auth/login/login.component';
 import { CompilationDetailsComponent } from './compilation-details/compilation-details.component';
+import { CompilationExportComponent } from './compilation-export/compilation-export.component';
+import { CompilationStatsComponent } from './compilation-stats/compilation-stats.component';
 
 const routes: Routes = [
   {
@@ -26,6 +28,14 @@ const routes: Routes = [
           {
             path: '',
             component: CompilationDetailsComponent
+          },
+          {
+            path: 'export',
+            component: CompilationExportComponent
+          },
+          {
+            path: 'stats',
+            component: CompilationStatsComponent
           }
         ]
       }

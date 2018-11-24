@@ -1,5 +1,17 @@
 <ng-container *ngIf="compilation">
-  <h3 class="compilation-name" *ngIf="compilation.name">{{compilation.name}}</h3>
+    <h3 class="compilation-name" *ngIf="compilation.name">{{compilation.name}}</h3>
+    <ul class="nav nav-tabs nav-fill">
+        <li class="nav-item">
+          <a [routerLink]=" ['./'] " routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}" class="nav-link">Details</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="export" routerLinkActive="active" class="nav-link">Export/format</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="stats" routerLinkActive="active" class="nav-link">Statistics</a>
+        </li>
+      </ul>
+
   <router-outlet></router-outlet>
 
 </ng-container>

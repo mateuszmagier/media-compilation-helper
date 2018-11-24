@@ -23,6 +23,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { CompilationDetailsComponent } from './compilation-details/compilation-details.component';
+import { CompilationExportComponent } from './compilation-export/compilation-export.component';
+import { CompilationStatsComponent } from './compilation-stats/compilation-stats.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyChfM6HCZtYKIJqGrrgjqqhd8lxV3TpLIo',
@@ -44,7 +46,9 @@ const firebaseConfig = {
     CompilationsListComponent,
     CompilationsPanelComponent,
     LoginComponent,
-    CompilationDetailsComponent
+    CompilationDetailsComponent,
+    CompilationExportComponent,
+    CompilationStatsComponent
   ],
   imports: [
     BrowserModule,
