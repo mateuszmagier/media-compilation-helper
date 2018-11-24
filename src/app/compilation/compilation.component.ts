@@ -15,6 +15,7 @@ export class CompilationComponent implements OnInit {
   compilation: AudioCompilation;
 
   newCompilationMode: boolean;
+  editable: boolean;
 
   constructor(private compilationService: CompilationService,
     public filesService: FilesService,
@@ -33,6 +34,7 @@ export class CompilationComponent implements OnInit {
       } else {
         this.newCompilationMode = true;
       }
+      this.editable = this.newCompilationMode;
     });
   }
 
@@ -51,6 +53,15 @@ export class CompilationComponent implements OnInit {
     this.filesService.reset();
     console.log(this.compilation);
     console.log(JSON.stringify(this.compilation, null, 2));
+  }
+
+  edit() {
+    this.editable = true;
+  }
+
+  update() {
+    this.editable = false;
+    this.compilationService.updateCompilation(this.compilation);
   }
 
 }

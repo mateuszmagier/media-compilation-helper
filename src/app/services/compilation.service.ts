@@ -47,6 +47,10 @@ export class CompilationService {
     this.compilationListSubject.next(list);
   }
 
+  updateCompilation(compilation: AudioCompilation) {
+    this.databaseService.updateCompilation(compilation);
+  }
+
   getAudiofilesNumber() {
     return this.compilationListSubject.getValue().length;
   }

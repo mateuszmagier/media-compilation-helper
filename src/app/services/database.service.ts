@@ -38,4 +38,9 @@ export class DatabaseService {
     const deleteURL = this.URL_DB + '/' + compilation._id.$oid;
     this.http.delete(deleteURL, { params: this.getParams() }).subscribe(result => console.log(result));
   }
+
+  updateCompilation(compilation: AudioCompilation) {
+    const updateURL = this.URL_DB + '/' + compilation._id.$oid;
+    this.http.put(updateURL, compilation, { params: this.getParams() }).subscribe(result => console.log(result));
+  }
 }
