@@ -30,6 +30,7 @@ export class CompilationDetailsComponent implements OnInit {
       if (id) { // component is used to displaying compilation from list (My compilations)
         this.compilationService.getCompilationListObservable().subscribe(list => {
           this.compilation = list[id - 1];
+          this.compilationService.setActiveCompilation(this.compilation);
         });
         this.newCompilationMode = false;
       } else {

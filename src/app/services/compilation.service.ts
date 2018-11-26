@@ -9,6 +9,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class CompilationService {
 
   private compilationListSubject = new BehaviorSubject<Array<AudioCompilation>>([]);
+  private activeCompilation: AudioCompilation;
 
   constructor(private databaseService: DatabaseService, private angularFire: AngularFireAuth) {
     this.angularFire.authState.subscribe(user => {
@@ -53,5 +54,23 @@ export class CompilationService {
 
   getAudiofilesNumber() {
     return this.compilationListSubject.getValue().length;
+  }
+
+  setActiveCompilation(compilation: AudioCompilation) {
+    this.activeCompilation = compilation;
+  }
+
+  getActiveCompilation(): AudioCompilation {
+    return this.activeCompilation;
+  }
+
+  testFormat(compilation: AudioCompilation): string[] {
+    const compilationStrings = [];
+    let string;
+    [].forEach.call(compilation.audiofiles, audiofile => {
+      string = audiofile.timestamp + ' ' + audiofile.filename;
+      compilationStrings.push(string);
+    });
+    return compilationStrings;
   }
 }
