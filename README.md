@@ -1,4 +1,8 @@
-# MediaCompilationHelper
+# Media Compilation Helper
+
+## [LIVE](https://media-compilation-helper.firebaseapp.com/)
+
+### Angular app for generating timestamps for audio compilations elements.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.3.
 
