@@ -16,12 +16,17 @@ export class FilesService {
   addFiles(files: FileList) {
     let audioFile: AudioFile;
     const list = this.audioFilesList$.getValue();
+    const promises = [];
 
     [].forEach.call(files, file => {
       audioFile = this.buildModel(file);
-      this.obtainDuration(audioFile, file).then(resolve => {
-        audioFile = this.calculateTimestamp(resolve);
-        list.push(audioFile);
+      list.push(audioFile);
+      promises.push(this.obtainDuration(audioFile, file));
+    });
+
+    Promise.all(promises).then(resolve => {
+      [].forEach.call(list, audiofile => {
+        audiofile = this.calculateTimestamp(audiofile);
       });
     });
 
@@ -30,6 +35,7 @@ export class FilesService {
   }
 
   calculateTimestamp(audioFile: AudioFile) {
+    console.log(audioFile.filename);
     audioFile.rawTimestamp = this.lastTimestamp;
     audioFile.timestamp = this.timestampService.getTimestamp(this.lastTimestamp);
     this.lastTimestamp += audioFile.duration;

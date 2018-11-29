@@ -15,6 +15,8 @@ export class FilesUploadComponent implements OnInit {
 
   onFileChange(event) {
     const files = event.target.files;
+    console.log('PLIKI:');
+    console.log(files);
 
     if (files && files.length) {
       this.filesService.addFiles(files);
