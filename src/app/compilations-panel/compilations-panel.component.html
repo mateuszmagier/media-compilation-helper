@@ -1,8 +1,8 @@
-<div class="compilations-panel">
-  <div class="compilations-panel-left">
+<div class="compilations-panel row">
+  <div class="compilations-panel-left col-4">
     <app-compilations-list [compilations]="compilations"></app-compilations-list>
   </div>
-  <div class="compilations-panel-right">
+  <div class="compilations-panel-right col-8">
     <router-outlet></router-outlet>
     <!-- <app-compilation *ngIf="activeCompilation" [compilation]="activeCompilation"></app-compilation> -->
   </div>

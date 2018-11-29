@@ -6,6 +6,19 @@
   }
 }
 
+.compilation-buttons {
+  margin-top: 15px;
+
+  .btn {
+    &:first-child {
+      margin-right: 5px;
+    }
+    &:last-child {
+      margin-left: 5px;
+    }
+  }
+}
+
 .compilation-name {
   margin-top: 5px;
 }

@@ -10,6 +10,7 @@
       </button>
     </div>
   </div>
+  <div class="compilation-buttons">
   <button *ngIf="!newCompilationMode" type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
     <i class="fas fa-trash-alt"></i>
     Delete
@@ -21,28 +22,30 @@
     <i class="fas fa-check"></i>
     Update
   </button>
-  <table *ngIf="compilation.audiofiles && compilation.audiofiles.length" class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Timestamp</th>
-        <th scope="col">Filename</th>
-        <th scope="col">Duration</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let audiofile of compilation.audiofiles; let i = index">
-        <th scope="row">{{i+1}}</th>
-        <td>{{audiofile.timestamp}}</td>
-        <!-- <td>{{audiofile.filename}}</td> -->
-        <!-- <td><input type="text" [(ngModel)]="audiofile.filename" class="audiofile__filename" [readonly]="!editable"></td> -->
-        <td *ngIf="editable"><input type="text" [(ngModel)]="audiofile.filename" class="audiofile__filename"></td>
-        <td *ngIf="!editable">{{audiofile.filename}}</td>
-        <td>{{audiofile.duration | convertTimestamp:false}}</td>
-      </tr>
-    </tbody>
-  </table>
-
+</div>
+  <div class="table-responsive">
+    <table *ngIf="compilation.audiofiles && compilation.audiofiles.length" class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Timestamp</th>
+          <th scope="col">Filename</th>
+          <th scope="col">Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let audiofile of compilation.audiofiles; let i = index">
+          <th scope="row">{{i+1}}</th>
+          <td>{{audiofile.timestamp}}</td>
+          <!-- <td>{{audiofile.filename}}</td> -->
+          <!-- <td><input type="text" [(ngModel)]="audiofile.filename" class="audiofile__filename" [readonly]="!editable"></td> -->
+          <td *ngIf="editable"><input type="text" [(ngModel)]="audiofile.filename" class="audiofile__filename"></td>
+          <td *ngIf="!editable">{{audiofile.filename}}</td>
+          <td>{{audiofile.duration | convertTimestamp:false}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
