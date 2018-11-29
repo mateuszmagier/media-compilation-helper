@@ -15,21 +15,23 @@ export class FilesService {
 
   addFiles(files: FileList) {
     let audioFile: AudioFile;
-    const list = this.audioFilesList$.getValue();
+    let list = this.audioFilesList$.getValue();
+    const newList = [];
     const promises = [];
 
     [].forEach.call(files, file => {
       audioFile = this.buildModel(file);
-      list.push(audioFile);
+      newList.push(audioFile);
       promises.push(this.obtainDuration(audioFile, file));
     });
 
     Promise.all(promises).then(resolve => {
-      [].forEach.call(list, audiofile => {
+      [].forEach.call(newList, audiofile => {
         audiofile = this.calculateTimestamp(audiofile);
       });
     });
 
+    list = list.concat(newList);
     this.audioFilesList$.next(list);
     this.uploaded = true;
   }
