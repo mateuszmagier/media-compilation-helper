@@ -3,6 +3,7 @@ import { CompilationService } from '../services/compilation.service';
 import { FilesService } from '../services/files.service';
 import { AuthService } from '../auth/auth.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-compilation-details',
@@ -21,7 +22,8 @@ export class CompilationDetailsComponent implements OnInit {
     public filesService: FilesService,
     private authService: AuthService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private alertService: AlertService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe((param: Params) => {
@@ -41,8 +43,10 @@ export class CompilationDetailsComponent implements OnInit {
   }
 
   delete() {
+    const msg = 'Compilation ' + this.compilation.name + ' was successfully deleted.';
     this.compilationService.deleteCompilation(this.compilation);
     this.router.navigate(['/compilations']);
+    this.alertService.info(msg);
   }
 
   save(input: HTMLInputElement) {
@@ -53,8 +57,8 @@ export class CompilationDetailsComponent implements OnInit {
 
     this.compilationService.saveCompilation(this.compilation);
     this.filesService.reset();
-    console.log(this.compilation);
-    console.log(JSON.stringify(this.compilation, null, 2));
+    const msg = 'Compilation ' + this.compilation.name + ' was successfully created.';
+    this.alertService.success(msg);
   }
 
   edit() {
@@ -62,8 +66,11 @@ export class CompilationDetailsComponent implements OnInit {
   }
 
   update() {
+    const msg = 'Compilation ' + this.compilation.name + ' was successfully updated.';
     this.editable = false;
     this.compilationService.updateCompilation(this.compilation);
+    this.router.navigate(['/compilations']);
+    this.alertService.success(msg);
   }
 
 }

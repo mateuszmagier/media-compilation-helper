@@ -1,5 +1,4 @@
 <ng-container *ngIf="compilation">
-  <!-- <h3 class="compilation-name" *ngIf="compilation.name">{{compilation.name}}</h3> -->
   <div *ngIf="newCompilationMode && filesService.audioFilesList$.getValue().length" class="input-group mb-3">
     <input #compilationName type="text" class="form-control" placeholder="Compilation name" aria-label="Compilation name"
       aria-describedby="saveBtn" required>

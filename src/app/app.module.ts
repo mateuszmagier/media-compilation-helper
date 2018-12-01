@@ -25,6 +25,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { CompilationDetailsComponent } from './compilation-details/compilation-details.component';
 import { CompilationExportComponent } from './compilation-export/compilation-export.component';
 import { CompilationStatsComponent } from './compilation-stats/compilation-stats.component';
+import { AlertComponent } from './alert/alert.component';
+import { AlertService } from './services/alert.service';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyChfM6HCZtYKIJqGrrgjqqhd8lxV3TpLIo',
@@ -48,7 +50,8 @@ const firebaseConfig = {
     LoginComponent,
     CompilationDetailsComponent,
     CompilationExportComponent,
-    CompilationStatsComponent
+    CompilationStatsComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,7 @@ const firebaseConfig = {
     AngularFireAuthModule,
     ModalModule.forRoot()
   ],
-  providers: [TimestampService, FilesService, DatabaseService, CompilationService, AuthService],
+  providers: [TimestampService, FilesService, DatabaseService, CompilationService, AuthService, AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

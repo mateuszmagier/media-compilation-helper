@@ -3,7 +3,9 @@
     <app-compilations-list [compilations]="compilations"></app-compilations-list>
   </div>
   <div class="compilations-panel-right col-8">
+    <!-- <ng-container *ngIf="!compilationService.getActiveCompilation()">
+      <app-alert></app-alert>
+    </ng-container> -->
     <router-outlet></router-outlet>
-    <!-- <app-compilation *ngIf="activeCompilation" [compilation]="activeCompilation"></app-compilation> -->
   </div>
 </div>
