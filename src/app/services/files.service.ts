@@ -64,8 +64,15 @@ export class FilesService {
   }
 
   buildModel(file: File): AudioFile {
+    const fullFilename = file.name;
+    const filenameArr = fullFilename.split('.');
+    console.log('TABLICA: ', filenameArr);
+    const ext = filenameArr.pop();
+    // console.log('FILENAME: ' + filenameArr.join('.'));
+    // console.log('EXTENSION: ' + ext);
     const model: AudioFile = {
-      filename: file.name
+      filename: filenameArr.join('.'),
+      extension: ext
     };
     return model;
   }
