@@ -63,6 +63,7 @@ export class CompilationDetailsComponent implements OnInit {
 
   edit() {
     this.editable = true;
+    this.filesService.setAudiofilesList(this.compilation.audiofiles);
   }
 
   update() {
@@ -71,6 +72,19 @@ export class CompilationDetailsComponent implements OnInit {
     this.compilationService.updateCompilation(this.compilation);
     this.router.navigate(['/compilations']);
     this.alertService.success(msg);
+  }
+
+  moveUp(index: number) {
+    console.log('moveUp: ' + index);
+    this.filesService.replace(index - 1, index);
+  }
+  moveDown(index: number) {
+    console.log('moveDown: ' + index);
+    this.filesService.replace(index, index + 1);
+  }
+  remove(index: number) {
+    console.log('remove: ' + index);
+    this.filesService.remove(index);
   }
 
 }

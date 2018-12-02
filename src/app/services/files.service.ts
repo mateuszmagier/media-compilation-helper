@@ -83,4 +83,41 @@ export class FilesService {
     this.audioFilesList$.next([]);
     this.lastTimestamp = 0;
   }
+
+  setAudiofilesList(list: Array<AudioFile>) {
+    this.audioFilesList$.next(list);
+  }
+
+  // method replaces two elements in audiofiles array
+  // index1, index2 - indexes of elements to replace
+  replace(index1: number, index2: number) {
+    const list = this.audioFilesList$.getValue();
+    const temp = list[index1];
+    list[index1] = list[index2];
+    list[index1].rawTimestamp = temp.rawTimestamp;
+    list[index1].timestamp = temp.timestamp;
+    temp.rawTimestamp = list[index1].rawTimestamp + list[index1].duration;
+    temp.timestamp = this.timestampService.getTimestamp(temp.rawTimestamp);
+    list[index2] = temp;
+    this.audioFilesList$.next(list);
+  }
+
+  remove(index: number) {
+    const list = this.audioFilesList$.getValue();
+    const removedDuration = list[index].duration;
+    console.log('REMOVED DURATION: ' + removedDuration);
+    list.splice(index, 1); // remove element from list
+    /* correct timestamps:
+      - remove value (removed audiofile's duration) from
+      raw timestamp of each audiofile after removed audiofile,
+      - regenerate timestamps
+    */
+    for (let i = index; i < list.length; i++) {
+      list[i].rawTimestamp -= removedDuration;
+      list[i].timestamp = this.timestampService.getTimestamp(list[i].rawTimestamp);
+    }
+    const last = list[list.length - 1];
+    this.lastTimestamp = last.rawTimestamp + last.duration;
+    this.audioFilesList$.next(list);
+  }
 }

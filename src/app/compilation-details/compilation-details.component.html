@@ -10,18 +10,18 @@
     </div>
   </div>
   <div class="compilation-buttons">
-  <button *ngIf="!newCompilationMode" type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
-    <i class="fas fa-trash-alt"></i>
-    Delete
-  </button>
-  <button *ngIf="!newCompilationMode && !editable" (click)="edit()" type="button" class="btn btn-success">
-    Edit
-  </button>
-  <button *ngIf="!newCompilationMode && editable" (click)="update()" type="button" class="btn btn-success">
-    <i class="fas fa-check"></i>
-    Update
-  </button>
-</div>
+    <button *ngIf="!newCompilationMode" type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+      <i class="fas fa-trash-alt"></i>
+      Delete
+    </button>
+    <button *ngIf="!newCompilationMode && !editable" (click)="edit()" type="button" class="btn btn-success">
+      Edit
+    </button>
+    <button *ngIf="!newCompilationMode && editable" (click)="update()" type="button" class="btn btn-success">
+      <i class="fas fa-check"></i>
+      Update
+    </button>
+  </div>
   <div class="table-responsive">
     <table *ngIf="compilation.audiofiles && compilation.audiofiles.length" class="table">
       <thead>
@@ -29,18 +29,26 @@
           <th scope="col">#</th>
           <th scope="col">Timestamp</th>
           <th scope="col">Filename</th>
-          <th scope="col">Ext</th>
+          <th *ngIf="!editable" scope="col">Ext</th>
           <th scope="col">Duration</th>
+          <th *ngIf="editable" scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let audiofile of compilation.audiofiles; let i = index">
+        <tr *ngFor="let audiofile of compilation.audiofiles; let i = index" class="audiofile">
           <th scope="row">{{i+1}}</th>
           <td>{{audiofile.timestamp}}</td>
           <td *ngIf="editable"><input type="text" [(ngModel)]="audiofile.filename" class="audiofile__filename"></td>
           <td *ngIf="!editable">{{audiofile.filename}}</td>
-          <td>{{audiofile.extension | uppercase}}</td>
+          <td *ngIf="!editable">{{audiofile.extension | uppercase}}</td>
           <td>{{audiofile.duration | convertTimestamp:false}}</td>
+          <td *ngIf="editable">
+            <span class="actions">
+              <a class="action" *ngIf="i>0" (click)="moveUp(i)"><i class="fas fa-angle-up action__icon"></i></a>
+              <a class="action" *ngIf="i<compilation.audiofiles.length-1" (click)="moveDown(i)"><i class="fas fa-angle-down action__icon"></i></a>
+              <a class="action" (click)="remove(i)"><i class="fas fa-times action__icon"></i></a>
+            </span>
+          </td>
         </tr>
       </tbody>
     </table>

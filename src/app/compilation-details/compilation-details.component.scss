@@ -31,3 +31,24 @@
 .modal {
   text-align: left;
 }
+
+.actions {
+  opacity: 0;
+  transition: opacity .2s ease-in;
+
+  .action {
+    cursor: pointer;
+
+    &__icon {
+      font-size: 1.5em;
+    }
+  }
+}
+
+.audiofile {
+  &:hover {
+    .actions {
+      opacity: 1;
+    }
+  }
+}
